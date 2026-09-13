@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Hub | GitHub Pages</title>
+    <meta name="description" content="Creative Hub Portfolio - Explore premium web design projects including BarberShop, Restaurant, and Car Wash services." />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Creative Hub | Portfolio</title>
     <style>
       :root {
         --bg: #0b1020;
@@ -21,20 +23,26 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        font-family: Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
         background:
           radial-gradient(circle at top left, rgba(124,156,255,0.28), transparent 24%),
           radial-gradient(circle at bottom right, rgba(102,217,199,0.18), transparent 22%),
           linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
         color: var(--text);
         line-height: 1.6;
+        min-height: 100vh;
       }
 
       a {
         color: inherit;
         text-decoration: none;
+        transition: color 0.3s ease;
       }
 
       .container {
@@ -64,6 +72,7 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
         font-weight: 700;
+        animation: fadeInDown 0.6s ease 0.1s both;
       }
 
       h1 {
@@ -71,16 +80,21 @@
         line-height: 0.96;
         margin: 1rem 0;
         letter-spacing: -0.05em;
+        animation: fadeInDown 0.6s ease 0.2s both;
       }
 
       .highlight {
-        color: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .lead {
         color: var(--muted);
         font-size: 1.05rem;
         max-width: 42rem;
+        animation: fadeInUp 0.6s ease 0.3s both;
       }
 
       .hero-actions {
@@ -88,6 +102,7 @@
         flex-wrap: wrap;
         gap: 1rem;
         margin-top: 1.8rem;
+        animation: fadeInUp 0.6s ease 0.4s both;
       }
 
       .button {
@@ -98,22 +113,39 @@
         padding: 0.95rem 1.5rem;
         border-radius: 999px;
         font-weight: 700;
-        transition: transform 0.2s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
       }
 
       .button:hover {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+      }
+
+      .button:active {
+        transform: translateY(-1px);
       }
 
       .button-primary {
         background: linear-gradient(135deg, var(--primary), #8b6dff);
         color: white;
+        box-shadow: 0 8px 24px rgba(124, 156, 255, 0.25);
+      }
+
+      .button-primary:hover {
+        box-shadow: 0 12px 32px rgba(124, 156, 255, 0.35);
       }
 
       .button-secondary {
-        border: 1px solid rgba(255,255,255,0.12);
+        border: 1.5px solid rgba(255,255,255,0.15);
         background: rgba(255,255,255,0.02);
         color: var(--text);
+      }
+
+      .button-secondary:hover {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.25);
       }
 
       .stats {
@@ -122,23 +154,32 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1rem;
         max-width: 46rem;
+        animation: fadeInUp 0.6s ease 0.5s both;
       }
 
       .stat {
         background: rgba(255,255,255,0.03);
         border: 1px solid var(--line);
         border-radius: 22px;
-        padding: 1rem 1.1rem;
+        padding: 1.2rem 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .stat:hover {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.2);
       }
 
       .stat strong {
         display: block;
-        font-size: 1.5rem;
-        margin-bottom: 0.2rem;
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+        color: var(--primary);
       }
 
       .stat span {
         color: var(--muted);
+        font-size: 0.9rem;
       }
 
       .visual {
@@ -146,6 +187,7 @@
         overflow: hidden;
         border: 1px solid rgba(255,255,255,0.09);
         box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+        animation: fadeInRight 0.6s ease 0.3s both;
       }
 
       .visual img {
@@ -156,26 +198,33 @@
       }
 
       .section {
-        padding: 2rem 0 4rem;
+        padding: 3rem 0 4rem;
       }
 
       .section-head {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-head .eyebrow {
+        animation: fadeInDown 0.6s ease;
       }
 
       .section-head h2 {
-        margin: 0.6rem 0 0.7rem;
+        margin: 0.8rem 0 1rem;
         font-size: clamp(2rem, 3vw, 3rem);
+        animation: fadeInDown 0.6s ease 0.1s both;
       }
 
       .section-sub {
         color: var(--muted);
+        animation: fadeInUp 0.6s ease 0.2s both;
+        max-width: 50rem;
       }
 
       .cards {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.25rem;
+        gap: 1.5rem;
       }
 
       .card {
@@ -183,6 +232,27 @@
         border: 1px solid var(--line);
         border-radius: 28px;
         padding: 1.2rem;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: fadeInUp 0.6s ease both;
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .card:hover {
+        background: linear-gradient(180deg, rgba(124,156,255,0.08), rgba(102,217,199,0.04));
+        border-color: rgba(124, 156, 255, 0.3);
+        transform: translateY(-8px);
+        box-shadow: 0 16px 48px rgba(124, 156, 255, 0.15);
       }
 
       .card img {
@@ -191,35 +261,109 @@
         object-fit: cover;
         border-radius: 22px;
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover img {
+        transform: scale(1.02);
       }
 
       .card h3 {
-        margin: 0 0 0.5rem;
-        font-size: 1.25rem;
+        margin: 0 0 0.6rem;
+        font-size: 1.3rem;
+        font-weight: 700;
       }
 
       .card p {
-        margin: 0 0 1rem;
+        margin: 0 0 1.2rem;
         color: var(--muted);
+        font-size: 0.95rem;
       }
 
       .card a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 42px;
-        padding: 0.75rem 0.9rem;
+        min-height: 44px;
+        padding: 0.75rem 1.2rem;
         border-radius: 999px;
         background: rgba(255,255,255,0.02);
         border: 1px solid rgba(255,255,255,0.08);
         font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .card a:hover {
+        background: rgba(124, 156, 255, 0.15);
+        border-color: rgba(124, 156, 255, 0.4);
+        color: var(--primary);
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
       }
 
       @media (max-width: 900px) {
         .hero-inner,
         .cards {
           grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 2rem 0 1rem;
+        }
+
+        .visual img {
+          height: 350px;
+        }
+
+        .stats {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
         }
       }
     </style>
@@ -234,10 +378,10 @@
             This is the public landing page for the Creative Hub project. Use the links below to open each website directly when the repository is published on GitHub.
           </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="WebPageGCH/PWB.html">Open Portfolio</a>
-            <a class="button button-secondary" href="FileBarberShop/filebs1.html">Open BarberShop</a>
-          </div>
+          <nav class="hero-actions">
+            <a class="button button-primary" href="WebPageGCH/PWB.html" aria-label="Open Portfolio page">Open Portfolio</a>
+            <a class="button button-secondary" href="FileBarberShop/filebs1.html" aria-label="Open BarberShop page">Open BarberShop</a>
+          </nav>
 
           <div class="stats">
             <div class="stat">
@@ -256,7 +400,7 @@
         </div>
 
         <div class="visual">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Creative team" />
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Creative team collaborating on design projects" />
         </div>
       </div>
     </main>
@@ -273,24 +417,24 @@
 
         <div class="cards">
           <article class="card">
-            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Barber shop" />
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Professional barber shop interior with modern styling chairs" />
             <h3>BarberShop</h3>
-            <p>Premium barber shop landing page.</p>
-            <a href="FileBarberShop/filebs1.html">Open filebs1.html</a>
+            <p>Premium barber shop landing page with service showcase.</p>
+            <a href="FileBarberShop/filebs1.html" aria-label="Visit BarberShop website">Open filebs1.html</a>
           </article>
 
           <article class="card">
-            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Restaurant" />
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Elegant restaurant dining area with fine ambiance" />
             <h3>Restaurant</h3>
             <p>Elegant restaurant design and content page.</p>
-            <a href="FileRestaurantStore/filers1.html">Open filers1.html</a>
+            <a href="FileRestaurantStore/filers1.html" aria-label="Visit Restaurant website">Open filers1.html</a>
           </article>
 
           <article class="card">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Car wash" />
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Modern car wash facility with professional equipment" />
             <h3>CarWashAuto</h3>
-            <p>Premium car wash landing page.</p>
-            <a href="FileCarWashAuto/filecwa1.html">Open filecwa1.html</a>
+            <p>Premium car wash landing page with service details.</p>
+            <a href="FileCarWashAuto/filecwa1.html" aria-label="Visit CarWashAuto website">Open filecwa1.html</a>
           </article>
         </div>
       </div>
