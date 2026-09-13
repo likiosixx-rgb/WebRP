@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velvet Blade | Premium Barber Studio</title>
+    <meta
+      name="description"
+      content="Modern barber shop landing page with elegant design, premium services, and responsive layout for desktop, tablet, and mobile."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --bg-soft: #161616;
+        --panel: rgba(25, 25, 25, 0.8);
+        --panel-strong: #1a1a1a;
+        --text: #f5f1eb;
+        --muted: #c4bcae;
+        --accent: #d9b36c;
+        --accent-deep: #b78339;
+        --line: rgba(255, 255, 255, 0.1);
+        --shadow: rgba(0, 0, 0, 0.35);
+        --success: #9ce0c1;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        background: rgba(13, 13, 13, 0.7);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .header-inner {
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+        color: #121212;
+        font-size: 1.1rem;
+        font-weight: 800;
+        box-shadow: 0 14px 30px rgba(217, 179, 108, 0.35);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--text);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.4rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+        color: #111;
+        font-weight: 700;
+        box-shadow: 0 18px 35px rgba(217, 179, 108, 0.25);
+      }
+
+      .mobile-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--line);
+        cursor: pointer;
+      }
+
+      .mobile-toggle span,
+      .mobile-toggle span::before,
+      .mobile-toggle span::after {
+        position: relative;
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--text);
+        content: "";
+        margin: 0 auto;
+        transition: transform 0.25s ease;
+      }
+
+      .mobile-toggle span::before { top: -7px; }
+      .mobile-toggle span::after { top: 5px; }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(13,13,13,0.86), rgba(13,13,13,0.38)),
+          url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(217,179,108,0.26), transparent 35%);
+      }
+
+      .hero-inner {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        min-height: calc(100vh - 82px);
+        gap: 2rem;
+        padding: 4.5rem 0 4rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(217,179,108,0.5);
+        background: rgba(217,179,108,0.08);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.7rem, 4vw, 6rem);
+        line-height: 0.96;
+        margin: 1rem 0 1rem;
+        letter-spacing: -0.05em;
+      }
+
+      .lead {
+        max-width: 38rem;
+        font-size: 1.06rem;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .button-primary,
+      .button-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+        color: #111;
+        box-shadow: 0 22px 40px rgba(217,179,108,0.22);
+      }
+
+      .button-secondary {
+        border-color: rgba(255,255,255,0.18);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .button-primary:hover,
+      .button-secondary:hover,
+      .nav-cta:hover {
+        transform: translateY(-1px);
+      }
+
+      .stats-row {
+        margin-top: 2.4rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        max-width: 46rem;
+      }
+
+      .stat-box {
+        padding: 1rem 1.1rem;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+      }
+
+      .hero-card {
+        justify-self: end;
+        width: min(100%, 460px);
+        padding: 1rem;
+        border-radius: 30px;
+        background: rgba(18,18,18,0.76);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 28px 80px rgba(0,0,0,0.45);
+      }
+
+      .hero-card-image {
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .hero-card-image img {
+        height: 430px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .booking-card {
+        margin-top: 1rem;
+        padding: 1.1rem 1rem;
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(217,179,108,0.12), rgba(255,255,255,0.02));
+        border: 1px solid rgba(217,179,108,0.35);
+      }
+
+      .booking-card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .booking-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(156,224,193,0.15);
+        color: var(--success);
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+
+      .booking-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 0.9rem;
+      }
+
+      .mini-item {
+        padding: 0.75rem;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+      }
+
+      .mini-item small {
+        display: block;
+        color: var(--muted);
+      }
+
+      .mini-item strong {
+        display: block;
+        margin-top: 0.2rem;
+      }
+
+      .section {
+        padding: clamp(4rem, 6vw, 6.5rem) 0;
+      }
+
+      .section-head {
+        margin-bottom: 2rem;
+      }
+
+      .section-head .eyebrow {
+        margin-bottom: 0.8rem;
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.2rem, 3vw, 3.5rem);
+        line-height: 1.05;
+        margin: 0 0 0.8rem;
+      }
+
+      .section-sub {
+        max-width: 38rem;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .service-card {
+        position: relative;
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 1.4rem;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+      }
+
+      .service-icon {
+        display: grid;
+        place-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+        background: rgba(217,179,108,0.12);
+        color: var(--accent);
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
+      .service-card h3 {
+        margin: 0 0 0.6rem;
+        font-size: 1.2rem;
+      }
+
+      .service-card p {
+        color: var(--muted);
+        margin: 0 0 1rem;
+      }
+
+      .service-card .price {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .about-photo {
+        position: relative;
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.4);
+      }
+
+      .about-photo img {
+        width: 100%;
+        height: min(68vw, 640px);
+        object-fit: cover;
+      }
+
+      .floating-card {
+        position: absolute;
+        right: 1.1rem;
+        bottom: 1.1rem;
+        width: min(250px, 58%);
+        padding: 1rem;
+        background: rgba(17,17,17,0.88);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 22px;
+        backdrop-filter: blur(10px);
+      }
+
+      .floating-card strong {
+        display: block;
+        font-size: 1.45rem;
+      }
+
+      .floating-card span {
+        color: var(--muted);
+      }
+
+      .feature-list {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.8rem 0.9rem;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.02);
+      }
+
+      .feature-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: rgba(217,179,108,0.12);
+        display: grid;
+        place-items: center;
+        color: var(--accent);
+        font-size: 1.2rem;
+      }
+
+      .feature-item h4 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .feature-item p {
+        margin: 0.15rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .experience {
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .experience-card {
+        padding: 1.5rem;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.015);
+      }
+
+      .experience-card strong {
+        display: block;
+        font-size: 2.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        min-height: 240px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.06);
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent, rgba(0,0,0,0.62));
+      }
+
+      .gallery-label {
+        position: absolute;
+        left: 1rem;
+        bottom: 1rem;
+        z-index: 1;
+        font-weight: 700;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .pricing-card {
+        padding: 1.5rem;
+        border-radius: 28px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.015);
+      }
+
+      .pricing-card.featured {
+        background: linear-gradient(180deg, rgba(217,179,108,0.12), rgba(255,255,255,0.02));
+        border-color: rgba(217,179,108,0.5);
+        box-shadow: 0 18px 40px rgba(217,179,108,0.12);
+      }
+
+      .pricing-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .price-tag {
+        display: flex;
+        align-items: baseline;
+        gap: 0.35rem;
+        margin: 1rem 0 1.2rem;
+      }
+
+      .price-tag strong {
+        font-size: 2.3rem;
+        font-weight: 800;
+      }
+
+      .price-tag span {
+        color: var(--muted);
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.4rem;
+        display: grid;
+        gap: 0.7rem;
+        color: var(--muted);
+      }
+
+      .pricing-card li::before {
+        content: "✓";
+        color: var(--success);
+        font-weight: 700;
+        margin-right: 0.6rem;
+      }
+
+      .testimonials {
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .testimonial-card {
+        padding: 1.5rem;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .stars {
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.8rem;
+      }
+
+      .testimonial-card p {
+        color: var(--muted);
+        margin: 0 0 1rem;
+      }
+
+      .client {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .client-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .client-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .client small {
+        display: block;
+        color: var(--muted);
+      }
+
+      .cta-panel {
+        padding: clamp(2rem, 3vw, 3rem);
+        border-radius: 32px;
+        background: linear-gradient(135deg, rgba(217,179,108,0.18), rgba(255,255,255,0.02));
+        border: 1px solid rgba(217,179,108,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .cta-panel h3 {
+        margin: 0 0 0.4rem;
+        font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+      }
+
+      .cta-panel p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .site-footer {
+        padding: 2rem 0 3rem;
+        border-top: 1px solid var(--line);
+        background: rgba(0,0,0,0.15);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero-inner,
+        .about-grid,
+        .services-grid,
+        .experience-grid,
+        .pricing-grid,
+        .testimonial-grid,
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-inner {
+          padding-top: 3rem;
+        }
+
+        .nav {
+          position: absolute;
+          left: 1rem;
+          right: 1rem;
+          top: calc(100% + 0.75rem);
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1rem;
+          border-radius: 20px;
+          border: 1px solid var(--line);
+          background: rgba(17,17,17,0.96);
+          box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+        }
+
+        .nav.open {
+          display: flex;
+        }
+
+        .mobile-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .hero-inner,
+        .about-grid,
+        .services-grid,
+        .experience-grid,
+        .pricing-grid,
+        .testimonial-grid,
+        .gallery-grid,
+        .stats-row {
+          grid-template-columns: 1fr;
+        }
+
+        .header-inner {
+          min-height: 72px;
+        }
+
+        .nav-cta {
+          width: 100%;
+        }
+
+        .cta-panel {
+          display: block;
+          text-align: center;
+        }
+
+        .cta-panel .button-primary {
+          margin-top: 1rem;
+        }
+
+        .hero-card-image img {
+          height: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#top" class="brand" aria-label="Velvet Blade home">
+          <span class="brand-mark">V</span>
+          <span>Velvet Blade</span>
+        </a>
+
+        <nav class="nav" id="site-nav" aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#book" class="nav-cta">Book Now</a>
+        </nav>
+
+        <button class="mobile-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Premium grooming studio</div>
+            <h1>Sharp cuts. Strong style. Confident you.</h1>
+            <p class="lead">
+              Velvet Blade is where precision barbering, luxury detail, and modern style come together.
+              We create bold looks for busy professionals, trendsetters, and anyone ready to level up their image.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#book" class="button-primary">Book an Appointment</a>
+              <a href="#services" class="button-secondary">Explore Services</a>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-box">
+                <strong>8+</strong>
+                <span>Years styling excellence</span>
+              </div>
+              <div class="stat-box">
+                <strong>4.9/5</strong>
+                <span>Average client rating</span>
+              </div>
+              <div class="stat-box">
+                <strong>2.4k</strong>
+                <span>Happy cuts delivered</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Today's booking preview">
+            <div class="hero-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80"
+                alt="Man getting a premium haircut"
+              />
+            </div>
+
+            <div class="booking-card">
+              <div class="booking-card-head">
+                <h3>Today’s floor</h3>
+                <span class="booking-pill">Open</span>
+              </div>
+
+              <div class="mini-grid">
+                <div class="mini-item">
+                  <small>Available</small>
+                  <strong>3 chairs</strong>
+                </div>
+                <div class="mini-item">
+                  <small>Next slot</small>
+                  <strong>2:30 PM</strong>
+                </div>
+                <div class="mini-item">
+                  <small>Style</small>
+                  <strong>Classic Fade</strong>
+                </div>
+                <div class="mini-item">
+                  <small>Rate</small>
+                  <strong>From $32</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Our services</div>
+            <h2>Tailored care for every look</h2>
+            <p class="section-sub">
+              From quick maintenance to full luxury grooming sessions, we deliver expert service that matches your pace and your style.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">✂️</div>
+              <h3>Precision Haircut</h3>
+              <p>Modern cuts, traditional detailing, and clean finishing adapted to your face shape and routine.</p>
+              <div class="price">From $32</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">🧔</div>
+              <h3>Beard Styling</h3>
+              <p>Shape, trim, and soften your beard with styling that keeps it polished and easy to maintain.</p>
+              <div class="price">From $18</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">💈</div>
+              <h3>Fade & Design</h3>
+              <p>Clean fades, line work, and detail patterns that make your look stand out in every setting.</p>
+              <div class="price">From $36</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">✨</div>
+              <h3>Luxury Shave</h3>
+              <p>Hot towel finish, skin care prep, and a close shave designed for smooth, refreshed results.</p>
+              <div class="price">From $25</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container about-grid">
+          <div class="about-photo">
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80"
+              alt="Barber preparing a client"
+            />
+            <div class="floating-card">
+              <strong>10k+</strong>
+              <span>Successful sessions and loyal clients</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="eyebrow">Why choose us</div>
+            <h2>Crafted for people who care about how they look.</h2>
+            <p class="section-sub">
+              At Velvet Blade, every appointment is designed around confidence, comfort, and care. Our barbers combine skill,
+              creativity, and attention to detail to deliver a premium grooming experience that feels personal.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="feature-badge">✓</div>
+                <div>
+                  <h4>Expert barbers</h4>
+                  <p>Certified specialists who understand style, texture, and face shape.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-badge">✓</div>
+                <div>
+                  <h4>Luxury atmosphere</h4>
+                  <p>Modern interiors, welcoming energy, and premium care from start to finish.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-badge">✓</div>
+                <div>
+                  <h4>Easy scheduling</h4>
+                  <p>Flexible booking options, quick check-ins, and same-day availability when possible.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section experience">
+        <div class="container">
+          <div class="experience-grid">
+            <div class="experience-card">
+              <strong>8+</strong>
+              <span>Years of barbering mastery</span>
+            </div>
+            <div class="experience-card">
+              <strong>99%</strong>
+              <span>Client retention and repeat visits</span>
+            </div>
+            <div class="experience-card">
+              <strong>1-on-1</strong>
+              <span>Personal consultation for every guest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Style gallery</div>
+            <h2>Looks that speak for themselves</h2>
+            <p class="section-sub">
+              Browse some of our signature finishes, modern cuts, and beard transformations created for clients who expect more.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Modern haircut" />
+              <div class="gallery-label">Modern Fade</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" alt="Beard styling" />
+              <div class="gallery-label">Beard Detail</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Luxury grooming" />
+              <div class="gallery-label">Luxury Shave</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Classic style" />
+              <div class="gallery-label">Classic Trim</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Pricing</div>
+            <h2>Simple pricing. Serious results.</h2>
+            <p class="section-sub">
+              Clear packages that fit every routine, whether you want a quick refresh or a full luxury grooming experience.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <h3>Essential</h3>
+              <div class="price-tag">
+                <strong>$32</strong>
+                <span>/ visit</span>
+              </div>
+              <ul>
+                <li>Signature haircut</li>
+                <li>Beard trim</li>
+                <li>Style finish</li>
+              </ul>
+              <a href="#book" class="button-secondary">Choose Essential</a>
+            </article>
+
+            <article class="pricing-card featured">
+              <h3>Signature</h3>
+              <div class="price-tag">
+                <strong>$58</strong>
+                <span>/ visit</span>
+              </div>
+              <ul>
+                <li>Premium haircut</li>
+                <li>Beard sculpting</li>
+                <li>Hot towel finish</li>
+                <li>Styling consultation</li>
+              </ul>
+              <a href="#book" class="button-primary">Choose Signature</a>
+            </article>
+
+            <article class="pricing-card">
+              <h3>Royal</h3>
+              <div class="price-tag">
+                <strong>$85</strong>
+                <span>/ visit</span>
+              </div>
+              <ul>
+                <li>Full luxury grooming</li>
+                <li>Skin care treatment</li>
+                <li>Precision detailing</li>
+                <li>Priority booking</li>
+              </ul>
+              <a href="#book" class="button-secondary">Choose Royal</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="reviews">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Client love</div>
+            <h2>What our guests are saying</h2>
+            <p class="section-sub">
+              Real feedback from clients who keep coming back for the quality, care, and confidence boost they get here.
+            </p>
+          </div>
+
+          <div class="testimonial-grid">
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The atmosphere is premium, the barbers are genuinely skilled, and the final cut looked better than I imagined.”
+              </p>
+              <div class="client">
+                <div class="client-avatar">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Client portrait" />
+                </div>
+                <div>
+                  <strong>Marcus W.</strong>
+                  <small>Creative Director</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “I booked for a beard refresh and left feeling like I’d upgraded my whole image. Super clean experience.”
+              </p>
+              <div class="client">
+                <div class="client-avatar">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="Client portrait" />
+                </div>
+                <div>
+                  <strong>Daniel R.</strong>
+                  <small>Marketing Lead</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Everything from the consultation to the final style was thoughtful and polished. It’s my regular spot now.”
+              </p>
+              <div class="client">
+                <div class="client-avatar">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Client portrait" />
+                </div>
+                <div>
+                  <strong>James T.</strong>
+                  <small>Entrepreneur</small>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="book">
+        <div class="container">
+          <div class="cta-panel">
+            <div>
+              <div class="eyebrow">Ready to book?</div>
+              <h3>Let’s create your best look yet.</h3>
+              <p>Reserve your chair today and experience a barber service that matches your style and your schedule.</p>
+            </div>
+            <a href="mailto:hello@velvetblade.example" class="button-primary">Book a Session</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark">V</span>
+          <span>Velvet Blade</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.getElementById('nav-toggle');
+      const siteNav = document.getElementById('site-nav');
+
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = siteNav.classList.toggle('open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        siteNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            siteNav.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

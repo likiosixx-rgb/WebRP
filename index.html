@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Hub | GitHub Pages</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-2: #121a2a;
+        --panel: rgba(23, 31, 49, 0.82);
+        --text: #edf3ff;
+        --muted: #b9c4db;
+        --primary: #7c9cff;
+        --secondary: #66d9c7;
+        --accent: #ffb86c;
+        --line: rgba(255, 255, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(124,156,255,0.28), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(102,217,199,0.18), transparent 22%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .hero {
+        padding: 4rem 0 2rem;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(124, 156, 255, 0.08);
+        border: 1px solid rgba(124, 156, 255, 0.4);
+        color: #bfd0ff;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.6rem, 5vw, 5rem);
+        line-height: 0.96;
+        margin: 1rem 0;
+        letter-spacing: -0.05em;
+      }
+
+      .highlight {
+        color: var(--primary);
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 42rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.8rem;
+      }
+
+      .button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 52px;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--primary), #8b6dff);
+        color: white;
+      }
+
+      .button-secondary {
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .stats {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        max-width: 46rem;
+      }
+
+      .stat {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 1rem 1.1rem;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .stat span {
+        color: var(--muted);
+      }
+
+      .visual {
+        border-radius: 32px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.09);
+        box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+      }
+
+      .visual img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .section {
+        padding: 2rem 0 4rem;
+      }
+
+      .section-head {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-head h2 {
+        margin: 0.6rem 0 0.7rem;
+        font-size: clamp(2rem, 3vw, 3rem);
+      }
+
+      .section-sub {
+        color: var(--muted);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.005));
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 1.2rem;
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 22px;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+      }
+
+      .card p {
+        margin: 0 0 1rem;
+        color: var(--muted);
+      }
+
+      .card a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0.75rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow">GitHub Pages</div>
+          <h1>Creative Hub <span class="highlight">Portfolio</span></h1>
+          <p class="lead">
+            This is the public landing page for the Creative Hub project. Use the links below to open each website directly when the repository is published on GitHub.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="WebPageGCH/PWB.html">Open Portfolio</a>
+            <a class="button button-secondary" href="FileBarberShop/filebs1.html">Open BarberShop</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>3</strong>
+              <span>Project pages</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>Public link ready</span>
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              <span>Main portfolio page</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Creative team" />
+        </div>
+      </div>
+    </main>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Projects</div>
+          <h2>Open the websites directly</h2>
+          <p class="section-sub">
+            These links are written for a public GitHub Pages repository so they work correctly from the root page.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Barber shop" />
+            <h3>BarberShop</h3>
+            <p>Premium barber shop landing page.</p>
+            <a href="FileBarberShop/filebs1.html">Open filebs1.html</a>
+          </article>
+
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Restaurant" />
+            <h3>Restaurant</h3>
+            <p>Elegant restaurant design and content page.</p>
+            <a href="FileRestaurantStore/filers1.html">Open filers1.html</a>
+          </article>
+
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Car wash" />
+            <h3>CarWashAuto</h3>
+            <p>Premium car wash landing page.</p>
+            <a href="FileCarWashAuto/filecwa1.html">Open filecwa1.html</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

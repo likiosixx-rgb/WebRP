@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Hub Studio</title>
+    <meta name="description" content="Responsive creative landing page with modern design, multiple quick links, and mobile-friendly layout." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-2: #121a2a;
+        --panel: rgba(23, 31, 49, 0.82);
+        --panel-strong: #1a2338;
+        --text: #edf3ff;
+        --muted: #b9c4db;
+        --primary: #7c9cff;
+        --secondary: #66d9c7;
+        --accent: #ffb86c;
+        --line: rgba(255, 255, 255, 0.12);
+        --shadow: rgba(6, 10, 20, 0.45);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(124, 156, 255, 0.28), transparent 24%),
+          radial-gradient(circle at bottom right, rgba(102, 217, 199, 0.18), transparent 22%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container {
+        width: min(1180px, calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(11, 16, 32, 0.76);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .header-inner {
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #08111d;
+        box-shadow: 0 12px 25px rgba(124, 156, 255, 0.35);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+
+      .nav a:hover, .nav a:focus-visible { color: var(--text); }
+
+      .nav-cta {
+        padding: 0.85rem 1.15rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), #8b6dff);
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 16px 30px rgba(124, 156, 255, 0.35);
+      }
+
+      .mobile-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.02);
+        cursor: pointer;
+      }
+
+      .mobile-toggle span,
+      .mobile-toggle span::before,
+      .mobile-toggle span::after {
+        content: "";
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--text);
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .mobile-toggle span::before { top: -7px; }
+      .mobile-toggle span::after { top: 5px; }
+
+      .hero {
+        padding: clamp(4rem, 7vw, 7rem) 0 2.5rem;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(124,156,255,0.4);
+        background: rgba(124,156,255,0.08);
+        color: #bfd0ff;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2.8rem, 5vw, 5.7rem);
+        line-height: 0.96;
+        margin: 1rem 0 1rem;
+        letter-spacing: -0.06em;
+      }
+
+      .lead {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 38rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .button-primary,
+      .button-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, var(--primary), #8b6dff);
+        color: white;
+        box-shadow: 0 18px 32px rgba(124, 156, 255, 0.35);
+      }
+
+      .button-secondary {
+        border-color: rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .button-primary:hover,
+      .button-secondary:hover,
+      .nav-cta:hover {
+        transform: translateY(-1px);
+      }
+
+      .stats-row {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        max-width: 46rem;
+      }
+
+      .stat-box {
+        border-radius: 22px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+        padding: 1rem 1.1rem;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+      }
+
+      .hero-visual {
+        display: flex;
+        justify-content: center;
+      }
+
+      .visual-card {
+        position: relative;
+        width: min(100%, 430px);
+        border-radius: 34px;
+        background: linear-gradient(180deg, rgba(19, 29, 49, 0.94), rgba(19, 29, 49, 0.72));
+        border: 1px solid rgba(255,255,255,0.09);
+        box-shadow: 0 24px 70px var(--shadow);
+        overflow: hidden;
+      }
+
+      .visual-card img {
+        width: 100%;
+        height: 540px;
+        object-fit: cover;
+      }
+
+      .floating-box {
+        position: absolute;
+        left: 1.1rem;
+        right: 1.1rem;
+        bottom: 1.1rem;
+        padding: 1rem 1.1rem;
+        border-radius: 24px;
+        background: rgba(13, 18, 29, 0.82);
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .floating-box-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .floating-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(102,217,199,0.14);
+        color: #8df0d8;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .floating-box h3 {
+        margin: 0.8rem 0 0.2rem;
+        font-size: 1.15rem;
+      }
+
+      .floating-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .section {
+        padding: clamp(4rem, 6vw, 6rem) 0;
+      }
+
+      .section-head {
+        margin-bottom: 2rem;
+      }
+
+      .section-head h2 {
+        margin: 0.6rem 0 0.7rem;
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2rem, 3vw, 3.1rem);
+        line-height: 1.06;
+      }
+
+      .section-sub {
+        max-width: 42rem;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .quick-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .quick-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 1.35rem;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      }
+
+      .quick-media {
+        overflow: hidden;
+        border-radius: 22px;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .quick-media img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.35s ease;
+      }
+
+      .quick-card:hover .quick-media img {
+        transform: scale(1.05);
+      }
+
+      .quick-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, rgba(124,156,255,0.18), rgba(102,217,199,0.18));
+      }
+
+      .quick-card h3 {
+        margin: 0 0 0.6rem;
+        font-size: 1.25rem;
+      }
+
+      .quick-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .link-stack {
+        display: none;
+      }
+
+      .mini-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.015);
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .mini-link:hover {
+        border-color: rgba(124,156,255,0.48);
+        background: rgba(124,156,255,0.08);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .feature-card {
+        position: relative;
+        border-radius: 30px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.015);
+        min-height: 100%;
+      }
+
+      .feature-image img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+      }
+
+      .feature-body {
+        padding: 1.3rem;
+      }
+
+      .feature-body h3 {
+        margin: 0 0 0.55rem;
+        font-size: 1.25rem;
+      }
+
+      .feature-body p {
+        color: var(--muted);
+        margin: 0 0 1rem;
+      }
+
+      .feature-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .feature-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      .feature-links a.primary {
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        border-color: transparent;
+        color: #08111d;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .about-visual {
+        border-radius: 32px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+      }
+
+      .about-visual img {
+        width: 100%;
+        height: min(70vw, 620px);
+        object-fit: cover;
+      }
+
+      .check-list {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .check-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        padding: 0.9rem 1rem;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .check-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: rgba(124,156,255,0.14);
+        display: grid;
+        place-items: center;
+        color: #bfd0ff;
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .check-item h4 { margin: 0; }
+      .check-item p { margin: 0.3rem 0 0; color: var(--muted); }
+
+      .cta-panel {
+        padding: clamp(2rem, 4vw, 3rem);
+        border-radius: 32px;
+        background: linear-gradient(135deg, rgba(124,156,255,0.18), rgba(102,217,199,0.1));
+        border: 1px solid rgba(124,156,255,0.34);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .cta-panel h3 {
+        margin: 0 0 0.45rem;
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(1.7rem, 2.5vw, 2.7rem);
+      }
+
+      .cta-panel p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        background: rgba(8, 12, 22, 0.65);
+        padding: 2rem 0 3rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero-inner,
+        .about-grid,
+        .quick-grid,
+        .feature-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .lead {
+          margin-inline: auto;
+        }
+
+        .hero-actions,
+        .stats-row {
+          justify-content: center;
+        }
+
+        .nav {
+          position: absolute;
+          left: 1rem;
+          right: 1rem;
+          top: calc(100% + 0.75rem);
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1rem;
+          border-radius: 20px;
+          border: 1px solid var(--line);
+          background: rgba(17, 23, 36, 0.98);
+          box-shadow: 0 16px 38px rgba(0,0,0,0.3);
+        }
+
+        .nav.open { display: flex; }
+
+        .mobile-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .hero-inner,
+        .quick-grid,
+        .feature-grid,
+        .about-grid,
+        .stats-row,
+        .link-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .header-inner {
+          min-height: 74px;
+        }
+
+        .nav-cta {
+          width: 100%;
+        }
+
+        .hero { padding-top: 3rem; }
+        .cta-panel {
+          display: block;
+          text-align: center;
+        }
+        .cta-panel .button-primary {
+          margin-top: 1rem;
+        }
+        .visual-card img { height: 420px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#top" class="brand" aria-label="Creative Hub home">
+          <span class="brand-mark">C</span>
+          <span>Creative Hub</span>
+        </a>
+
+        <nav class="nav" id="site-nav" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact" class="nav-cta">Get Started</a>
+        </nav>
+
+        <button class="mobile-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Creative digital studio</div>
+            <h1>Build bold ideas that look amazing everywhere.</h1>
+            <p class="lead">
+              A modern, responsive webpage designed to impress on phones, tablets, laptops, and desktops while giving visitors quick access to your most important content.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#features" class="button-primary">Explore Links</a>
+              <a href="#showcase" class="button-secondary">View Showcase</a>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-box">
+                <strong>3x</strong>
+                <span>Fast access links</span>
+              </div>
+              <div class="stat-box">
+                <strong>100%</strong>
+                <span>Responsive layout</span>
+              </div>
+              <div class="stat-box">
+                <strong>24/7</strong>
+                <span>Online visibility</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="visual-card">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Creative team planning a project" />
+              <div class="floating-box">
+                <div class="floating-box-top">
+                  <strong>Project Status</strong>
+                  <span class="floating-badge">Live</span>
+                </div>
+                <h3>Creative launch ready</h3>
+                <p>Mobile, tablet, and desktop optimization complete.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Quick access</div>
+            <h2>Three smart links for every section</h2>
+            <p class="section-sub">
+              This page is built to present your content clearly and beautifully, with three easy links in each featured area so visitors can move around without confusion.
+            </p>
+          </div>
+
+          <div class="quick-grid">
+            <article class="quick-card">
+              <a href="../FileBarberShop/filebs1.html" class="quick-media" aria-label="Open barber shop page">
+                <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Barber shop style" />
+              </a>
+              <h3>BarberShop</h3>
+              <p>Luxury barber shop design with a premium and polished presentation.</p>
+              <div class="link-stack">
+                <a href="../FileBarberShop/filebs1.html" class="mini-link">filebs1.html</a>
+              </div>
+            </article>
+
+            <article class="quick-card">
+              <a href="../FileRestaurantStore/filers1.html" class="quick-media" aria-label="Open restaurant page">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Restaurant interior" />
+              </a>
+              <h3>Restaurant</h3>
+              <p>Modern restaurant-inspired style for an elegant and memorable customer experience.</p>
+              <div class="link-stack">
+                <a href="../FileRestaurantStore/filers1.html" class="mini-link">filers1.html</a>
+              </div>
+            </article>
+
+            <article class="quick-card">
+              <a href="../FileCarWashAuto/filecwa1.html" class="quick-media" aria-label="Open car wash page">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Car wash and auto care" />
+              </a>
+              <h3>CarWashAuto</h3>
+              <p>Premium car wash presentation built to impress clients and capture attention.</p>
+              <div class="link-stack">
+                <a href="../FileCarWashAuto/filecwa1.html" class="mini-link">filecwa1.html</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="showcase">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Showcase</div>
+            <h2>Creative content blocks that work beautifully</h2>
+            <p class="section-sub">
+              Every section is structured to feel premium, modern, and easy to use on every screen size.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-image">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Creative workspace" />
+              </div>
+              <div class="feature-body">
+                <h3>Creative Workspace</h3>
+                <p>Perfect for presenting your team, ideas, or services in a structured and attractive layout.</p>
+                <div class="feature-links">
+                  <a href="#about" class="primary">Learn More</a>
+                  <a href="#contact">Get In Touch</a>
+                  <a href="#features">Explore</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Team collaboration" />
+              </div>
+              <div class="feature-body">
+                <h3>Team Collaboration</h3>
+                <p>Showcase your workflow, process, and how your business helps clients reach real results.</p>
+                <div class="feature-links">
+                  <a href="#showcase" class="primary">See Work</a>
+                  <a href="#features">Benefits</a>
+                  <a href="#contact">Book</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-image">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Business strategy meeting" />
+              </div>
+              <div class="feature-body">
+                <h3>Business Growth</h3>
+                <p>Use clean categories and quick access links so people can take action right away.</p>
+                <div class="feature-links">
+                  <a href="#contact" class="primary">Start Now</a>
+                  <a href="#about">Why Us</a>
+                  <a href="#features">Links</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container about-grid">
+          <div class="about-visual">
+            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=80" alt="Modern creative office" />
+          </div>
+
+          <div>
+            <div class="eyebrow">About us</div>
+            <h2>Designed to impress clients and keep them engaged.</h2>
+            <p class="section-sub">
+              This webpage is crafted to give your business a premium online presence. It combines strong visuals, smooth mobile responsiveness, and easy navigation so every visitor can discover what matters most.
+            </p>
+
+            <div class="check-list">
+              <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                  <h4>Responsive everywhere</h4>
+                  <p>Looks great across phone, tablet, laptop, and desktop screens.</p>
+                </div>
+              </div>
+
+              <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                  <h4>Creative design</h4>
+                  <p>Modern cards, gradients, and elegant structure for a premium feel.</p>
+                </div>
+              </div>
+
+              <div class="check-item">
+                <div class="check-icon">✓</div>
+                <div>
+                  <h4>Easy navigation</h4>
+                  <p>Each section includes clear links to help users move around quickly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="cta-panel">
+            <div>
+              <div class="eyebrow">Ready to begin?</div>
+              <h3>Let’s build something impressive together.</h3>
+              <p>Use this page as a strong starting point for your business, brand, or portfolio.</p>
+            </div>
+            <a href="mailto:hello@creativehub.example" class="button-primary">Contact Us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark">C</span>
+          <span>Creative Hub</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.getElementById('nav-toggle');
+      const siteNav = document.getElementById('site-nav');
+
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = siteNav.classList.toggle('open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        siteNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            siteNav.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
